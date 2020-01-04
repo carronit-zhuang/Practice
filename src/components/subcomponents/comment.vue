@@ -1,9 +1,9 @@
 <template>
   <div class='cmt-container'>
    <h3>发表评论</h3>
-   <textarea placeholder="请输入要BB的内容(最多吐槽120字)" maxlength="120"></textarea>
+   <textarea placeholder="请输入要BB的内容(最多吐槽120字)" maxlength="120" v-model="msg"></textarea>
 
-   <mt-button type='primary' size='large'>发表评论</mt-button>
+   <mt-button type='primary' size='large' @click='postComment'>发表评论</mt-button>
    <div class="cmt-list">
      <div class="cmt-item" v-for="(item,i) in comments" :key='item.id'>
        <div class="cmt-title">
@@ -25,7 +25,8 @@ export default {
   data(){
     return {
       pageIndex: 1, //默认展示第一页的数据
-      comments: []
+      comments: [],  //获取到的评论数据
+      msg: ''  // 评论输入的内容
     };
   },
   created(){
@@ -45,10 +46,31 @@ export default {
     getMore(){   //获取更多
       this.pageIndex++;
       this.getComments();
+    },
+    postComment(){  //发表评论
+      // 校验提交的内容是否为空
+      if(this.msg.trim().length === 0){
+        return Toast('评论内容不能为空！')
+      }
+      // post的三个参数：
+      // 1.请求的url地址
+      // 2.提交给服务器的数据对象 {content: this.msg}
+      // 3.定义提交的时候，表单中数据的格式 {emulateJSON: true}   这个应该全局配置，比较方便
+      this.$http.
+      post('api/postcomment/'+this.$route.params.id, {content: this.msg.trim()}).then(function(result){
+          if(result.body.status === 0 ){
+            // 1.拼接出一个评论对象
+            var cmt = {user_name: '匿名用户', add_time: Date.now(), content: this.msg.trim()}
+            //2.将拼接出的评论放到数组的第一项
+            this.comments.unshift(cmt)
+            this.msg = ''
+          }
+      });
     }
+  
   },
   props: ["id"]
-}
+};
 </script>
 
 
