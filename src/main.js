@@ -8,20 +8,30 @@ Vue.use(VueRouter);
 // 1.3 引入自己的router.js路由模块
 import router from './router.js';
 
+// 导入格式化时间的moment插件
+import moment from 'moment';
+// 定义全局的一个过滤器
+Vue.filter('dateFormat',function(dataStr,pattern='YYYY-MM-DD HH:MM:SS'){
+  return moment(dataStr).format(pattern);
+})
+
 // 2.1 导入vue-resource
 import VueResource from 'vue-resource';
 // 2.2 安装vue-resource
 Vue.use(VueResource);
-
+//全局配置请求的根路径
+Vue.http.options.root = 'http://www.liulongbin.top:3005';
 // 引入app组件
 import app from './App.vue';
 
 // 按需要导入mint-ui中的组件
-import {Header,Swipe, SwipeItem} from 'mint-ui';
+import {Header,Swipe, SwipeItem,Button} from 'mint-ui';
 // 注册组件
 Vue.component(Header.name,Header);
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
+Vue.component(Button.name, Button);
+
 
 // 导入MUI的样式
 import './lib/mui/css/mui.min.css';

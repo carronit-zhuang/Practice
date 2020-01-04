@@ -1,10 +1,12 @@
 import VueRouter from "vue-router";
 
 // 导入对应的路由组件
-import Homecontainer from './components/Homecontainer.vue'
-import Membercontainer from './components/Membercontainer.vue'
-import Shopcarcontainer from './components/Shopcarcontainer.vue'
-import Searchcontainer from './components/Searchcontainer.vue'
+import Homecontainer from './components/tabbar/HomeContainer.vue'
+import Membercontainer from './components/tabbar/Membercontainer.vue'
+import Shopcarcontainer from './components/tabbar/Shopcarcontainer.vue'
+import Searchcontainer from './components/tabbar/Searchcontainer.vue'
+import NewsList from './components/news/NewsList.vue'
+import NewsInfo from './components/news/NewsInfo.vue'
 
 
 // 创建路由对象
@@ -15,6 +17,8 @@ var router = new VueRouter({
       {path: '/shopcar', component: Shopcarcontainer},
       {path: '/search', component: Searchcontainer},
       {path: '/', redirect: '/home'},
+      {path: '/home/newslist', component: NewsList},
+      {path: '/home/newsinfo/:id', component: NewsInfo}
   ],
   linkActiveClass: 'mui-active',//替换默认的路由高亮的类，原类名叫做 router-link-active
 });
