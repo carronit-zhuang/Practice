@@ -1,5 +1,6 @@
 <template>
   <div class='cmt-container'>
+   
    <h3>发表评论</h3>
    <textarea placeholder="请输入要BB的内容(最多吐槽120字)" maxlength="120" v-model="msg"></textarea>
 
@@ -64,6 +65,7 @@ export default {
             //2.将拼接出的评论放到数组的第一项
             this.comments.unshift(cmt)
             this.msg = ''
+            // this.getComments()
           }
       });
     }
@@ -98,5 +100,6 @@ export default {
         }
       }
     }
+
   }
 </style>
