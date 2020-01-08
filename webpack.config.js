@@ -3,6 +3,7 @@ var path = require('path')
 // 在内存中，根据指定的模板页面，生成一份内存中的首页，同时自动把打包好的bundle注入到页面底部
 // 如果要配置插件，需要在导出的对象中，挂载一个 plugins 节点
 var htmlWebpackPlugin = require('html-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 // 当以命令行形式运行 webpack 或 webpack-dev-server 的时候，工具会发现，我们并没有提供 要打包 的文件的 入口 和 出口文件，此时，他会检查项目根目录中的配置文件，并读取这个文件，就拿到了导出的这个 配置对象，然后根据这个对象，进行打包构建
 module.exports = {
@@ -14,8 +15,9 @@ module.exports = {
   plugins: [ // 所有webpack  插件的配置节点
     new htmlWebpackPlugin({
       template: path.join(__dirname, './src/index.html'), // 指定模板文件路径
-      filename: 'index.html' // 设置生成的内存页面的名称
-    })
+      filename: 'index.html'// 设置生成的内存页面的名称
+    }),
+    new VueLoaderPlugin()
   ],
   module: { // 配置所有第三方loader 模块的
     rules: [ // 第三方模块的匹配规则

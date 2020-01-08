@@ -20,7 +20,8 @@ export default {
     return{}
   },
   mounted(){
-    // console.log(this.max)
+    //初始化数字选择框组件
+    mui('.mui-numbox').numbox()
   },
   methods: {
     countChanged(){
