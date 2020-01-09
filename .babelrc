@@ -1,9 +1,17 @@
 {
-  "plugins": ["transform-runtime", ["component", [
-    {
-      "libraryName": "mint-ui",
-      "style": true
-    }
-  ]],"transform-remove-strict-mode"],
-  "presets": ["stage-0","env"]
+  "plugins": [
+    "@babel/plugin-transform-runtime",
+    [
+      "component",
+      {
+        "libraryName": "mint-ui",
+        "style": true
+      }
+    ],
+    "transform-remove-strict-mode"
+  ],
+  "presets": [
+    "@babel/stage-0",
+    "@babel/preset-env"
+  ]
 }
