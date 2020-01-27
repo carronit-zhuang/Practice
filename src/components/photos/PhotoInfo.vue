@@ -9,7 +9,8 @@
 
   <!-- 缩略图区域 -->
 <div class="thumbs">
-    <img class="preview-img" v-for="(item, index) in list" :src="item.src" height="100" @click="$preview.open(index, list)" :key="item.src">
+    <!-- <img class="preview-img" v-for="(item, index) in list" :src="item.src" height="100" @click="$preview.open(index, list)" :key="item.src"> -->
+     <vue-preview :slides="list" class="imgPrev"></vue-preview>
 </div>
 
 
@@ -54,6 +55,7 @@ export default {
           result.body.message.forEach(item => {
             item.w = 600
             item.h = 400
+            item.msrc = item.src
           })
         }
         // 再把完整的数据保存到slide中

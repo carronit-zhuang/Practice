@@ -153,7 +153,7 @@ import 'mint-ui/lib/style.css'
 // 导入MUI的样式
 import './lib/mui/css/mui.min.css';
 import './lib/mui/css/icons-extra.css'
-
+import './lib/mui/css/global.css'
 
 var vm = new Vue({
   el: '#app',
