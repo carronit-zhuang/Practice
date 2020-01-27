@@ -33,7 +33,7 @@
 				</div>
 			</div>
    </div>
-   <p>{{$store.getters.getGoodsSelected}}</p>
+   <!-- <p>{{$store.getters.getGoodsSelected}}</p> -->
 
    
   </div>
@@ -94,6 +94,7 @@ export default {
       .mui-card-content-inner{
         display: flex;
         align-items: center;
+        position: relative;
       }
       img{
         width: 60px;
@@ -101,12 +102,16 @@ export default {
       }
       h1{
         font-size: 13px;
+        height: 20px;
       }
       .info{
         height: 60px;
         p{
           display: flex;
           margin: 0;
+          position: absolute;
+          right:20px;
+          bottom:15px;
         }
         display: flex;
         flex-direction: column;
